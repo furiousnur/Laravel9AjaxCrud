@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstituteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxBOOKCRUDController;
 use App\Http\Controllers\TeacherController;
@@ -30,3 +31,9 @@ Route::get('teacher-list', [TeacherController::class, 'index']);
 Route::post('add-update-teacher', [TeacherController::class, 'store']);
 Route::post('edit-teacher', [TeacherController::class, 'edit']);
 Route::post('delete-teacher', [TeacherController::class, 'destroy']);
+
+//Institute route list
+Route::get('institute-list', [InstituteController::class, 'index']);
+Route::post('add-update-institute', [InstituteController::class, 'store']);
+Route::post('edit-institute', [InstituteController::class, 'edit']);
+Route::post('delete-institute', [InstituteController::class, 'destroy']);

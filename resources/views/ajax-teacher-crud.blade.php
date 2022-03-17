@@ -13,9 +13,7 @@
 <body>
 
 <div class="container mt-2">
-
     <div class="row">
-
         <div class="col-md-12 card-header text-center font-weight-bold">
             <h2>Teachers List</h2>
         </div>
@@ -92,8 +90,7 @@
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" id="btn-save" value="addNewBook">Save changes
-                        </button>
+                        <button type="submit" class="btn btn-primary" id="btn-save" value="addNewBook">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -122,9 +119,7 @@
         });
 
         $('body').on('click', '.edit', function () {
-
             var id = $(this).data('id');
-
             // ajax
             $.ajax({
                 type:"POST",
@@ -141,14 +136,11 @@
                     $('#author').val(res.author);
                 }
             });
-
         });
 
         $('body').on('click', '.delete', function () {
-
             if (confirm("Delete Record?") == true) {
                 var id = $(this).data('id');
-
                 // ajax
                 $.ajax({
                     type:"POST",
@@ -156,16 +148,13 @@
                     data: { id: id },
                     dataType: 'json',
                     success: function(res){
-
                         window.location.reload();
                     }
                 });
             }
-
         });
 
         $('body').on('click', '#btn-save', function (event) {
-
             var id = $("#id").val();
             var name = $("#name").val();
             var phone = $("#phone").val();
@@ -193,9 +182,7 @@
                     $("#btn-save"). attr("disabled", false);
                 }
             });
-
         });
-
     });
 </script>
 </body>
