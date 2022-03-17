@@ -5,17 +5,27 @@
     <title>Teacher List</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div class="container mt-2">
-    <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="font-weight-bold text-uppercase nav-item nav-link active" href="{{route('institute.index')}}">Institutes</a>
+                <a class="font-weight-bold text-uppercase nav-item nav-link" href="{{route('teacher.index')}}">Teachers</a>
+                <a class="font-weight-bold text-uppercase nav-item nav-link" href="{{route('book.index')}}">Books</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row mt-2">
         <div class="col-md-12 card-header text-center font-weight-bold">
-            <h2>Teachers List</h2>
+            <h3>Teachers List</h3>
         </div>
         <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewTeacher" class="btn btn-success">Add Teacher</button></div>
         <div class="col-md-12">

@@ -13,11 +13,21 @@
 <body>
 
 <div class="container mt-2">
-
-    <div class="row">
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="font-weight-bold text-uppercase nav-item nav-link active" href="{{route('institute.index')}}">Institutes</a>
+                <a class="font-weight-bold text-uppercase nav-item nav-link" href="{{route('teacher.index')}}">Teachers</a>
+                <a class="font-weight-bold text-uppercase nav-item nav-link" href="{{route('book.index')}}">Books</a>
+            </div>
+        </div>
+    </nav>
+    <div class="row mt-2">
         <div class="col-md-12 card-header text-center font-weight-bold">
-            <h2>Book List</h2>
+            <h3>Book List</h3>
         </div>
         <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewBook" class="btn btn-success">Add Book</button></div>
         <div class="col-md-12">
