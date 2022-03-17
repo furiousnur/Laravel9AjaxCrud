@@ -14,4 +14,8 @@ class Institute extends Model
         'institute_code',
         'status',
     ];
+
+    public function scopeActive($data){
+        return $data->where('status','Active');
+    }
 }

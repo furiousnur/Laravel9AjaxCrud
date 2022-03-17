@@ -23,10 +23,12 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Institute</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Designation</th>
-                    <th scope="col">Author</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -34,10 +36,18 @@
                 @foreach ($teachers as $index=>$teacher)
                     <tr>
                         <td>{{ $index+1 }}</td>
+                        <td>{{ $teacher->book->title }}</td>
+                        <td>{{ $teacher->institute->name }}</td>
                         <td>{{ $teacher->name }}</td>
                         <td>{{ $teacher->phone }}</td>
                         <td>{{ $teacher->designation }}</td>
-                        <td>{{ $teacher->author }}</td>
+                        <td>
+                            @if($teacher->status == 'Active')
+                                <span class="badge badge-success">{{ $teacher->status }}</span>
+                            @else
+                                <span class="badge badge-danger">{{ $teacher->status }}</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="javascript:void(0)" class="btn btn-primary edit" data-id="{{ $teacher->id }}">Edit</a>
                             <a href="javascript:void(0)" class="btn btn-primary delete" data-id="{{ $teacher->id }}">Delete</a>
@@ -61,6 +71,31 @@
             <div class="modal-body">
                 <form action="javascript:void(0)" id="addEditTeacherForm" name="addEditTeacherForm" class="form-horizontal" method="POST">
                     <input type="hidden" name="id" id="id">
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Book</label>
+                        <div class="col-sm-12">
+                            <select name="book_id" id="book_id" class="form-control">
+                                <option value="" selected disabled>Select Book</option>
+                                @foreach($books as $book)
+                                <option value="{{$book->id}}">{{$book->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Institute</label>
+                        <div class="col-sm-12">
+                            <select name="institute_id" id="institute_id" class="form-control">
+                                <option value="" selected disabled>Select Institute</option>
+                                @foreach($institutes as $institute)
+                                <option value="{{$institute->id}}">{{$institute->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="name" class="col-sm-4 control-label">Teacher Name</label>
                         <div class="col-sm-12">
@@ -83,9 +118,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Author</label>
+                        <label class="col-sm-4 control-label">Status</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="author" name="author" placeholder="Enter author Name" value="" required="">
+                            <select name="status" id="status" class="form-control">
+                                <option value="" selected disabled>Select Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
                         </div>
                     </div>
 
@@ -133,7 +172,9 @@
                     $('#name').val(res.name);
                     $('#phone').val(res.phone);
                     $('#designation').val(res.designation);
-                    $('#author').val(res.author);
+                    $('#institute_id').val(res.institute_id);
+                    $('#book_id').val(res.book_id);
+                    $('#status').val(res.status);
                 }
             });
         });
@@ -159,7 +200,9 @@
             var name = $("#name").val();
             var phone = $("#phone").val();
             var designation = $("#designation").val();
-            var author = $("#author").val();
+            var institute_id = $("#institute_id").val();
+            var book_id = $("#book_id").val();
+            var status = $("#status").val();
 
             $("#btn-save").html('Please Wait...');
             $("#btn-save"). attr("disabled", true);
@@ -173,7 +216,9 @@
                     name:name,
                     phone:phone,
                     designation:designation,
-                    author:author,
+                    institute_id:institute_id,
+                    book_id:book_id,
+                    status:status,
                 },
                 dataType: 'json',
                 success: function(res){

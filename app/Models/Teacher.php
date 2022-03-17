@@ -13,6 +13,20 @@ class Teacher extends Model
         'name',
         'phone',
         'designation',
-        'author',
+        'institute_id',
+        'book_id',
+        'status'
     ];
+
+    public function scopeActive($data){
+        return $data->where('status','Active');
+    }
+
+    public function book(){
+        return $this->belongsTo(Book::class);
+    }
+
+    public function institute(){
+        return $this->belongsTo(Institute::class);
+    }
 }

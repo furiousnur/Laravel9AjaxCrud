@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Institute;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,9 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::orderBy('id','desc')->paginate(5);
-        return view('ajax-teacher-crud',compact('teachers'));
+        $books = Book::all();
+        $institutes = Institute::active()->get();
+        return view('ajax-teacher-crud',compact('teachers','books','institutes'));
     }
 
 
@@ -32,10 +36,12 @@ class TeacherController extends Controller
                 'id' => $request->id
             ],
             [
+                'institute_id' => $request->institute_id,
+                'book_id' => $request->book_id,
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'designation' => $request->designation,
-                'author' => $request->author,
+                'status' => $request->status,
             ]);
 
         return response()->json(['success' => true]);

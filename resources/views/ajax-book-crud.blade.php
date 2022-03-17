@@ -17,9 +17,9 @@
     <div class="row">
 
         <div class="col-md-12 card-header text-center font-weight-bold">
-            <h2>Laravel 8 Ajax Book CRUD Tutorial</h2>
+            <h2>Book List</h2>
         </div>
-        <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewBook" class="btn btn-success">Add</button></div>
+        <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewBook" class="btn btn-success">Add Book</button></div>
         <div class="col-md-12">
             <table class="table">
                 <thead>
@@ -62,21 +62,21 @@
                 <form action="javascript:void(0)" id="addEditBookForm" name="addEditBookForm" class="form-horizontal" method="POST">
                     <input type="hidden" name="id" id="id">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Book Name</label>
+                        <label for="name" class="col-sm-4 control-label">Book Name</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Book Name" value="" maxlength="50" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Book Code</label>
+                        <label for="name" class="col-sm-4 control-label">Book Code</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="code" name="code" placeholder="Enter Book Code" value="" maxlength="50" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Book Author</label>
+                        <label class="col-sm-4 control-label">Book Author</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="author" name="author" placeholder="Enter author Name" value="" required="">
                         </div>

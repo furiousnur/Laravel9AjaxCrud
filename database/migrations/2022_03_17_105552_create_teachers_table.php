@@ -15,11 +15,16 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('institute_id');
+            $table->unsignedBigInteger('book_id');
             $table->string('name');
             $table->bigInteger('phone');
             $table->string('designation');
-            $table->string('author');
+            $table->enum('status',['Active','Inactive']);
             $table->timestamps();
+
+            $table->foreign('institute_id')->references('id')->on('institutes')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
