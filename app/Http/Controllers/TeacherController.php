@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class AjaxBOOKCRUDController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class AjaxBOOKCRUDController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy('id','desc')->paginate(5);
-        return view('ajax-book-crud',compact('books'));
+        $teachers = Teacher::orderBy('id','desc')->paginate(5);
+        return view('ajax-teacher-crud',compact('teachers'));
     }
 
 
@@ -27,13 +27,14 @@ class AjaxBOOKCRUDController extends Controller
      */
     public function store(Request $request)
     {
-        Book::updateOrCreate(
+        Teacher::updateOrCreate(
             [
                 'id' => $request->id
             ],
             [
-                'title' => $request->title,
-                'code' => $request->code,
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'designation' => $request->designation,
                 'author' => $request->author,
             ]);
 
@@ -44,13 +45,13 @@ class AjaxBOOKCRUDController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Book  $product
+     * @param  \App\Models\Teacher  $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
     {
         $where = array('id' => $request->id);
-        $book  = Book::where($where)->first();
+        $book  = Teacher::where($where)->first();
 
         return response()->json($book);
     }
@@ -59,12 +60,12 @@ class AjaxBOOKCRUDController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Book  $product
+     * @param  \App\Models\Teacher  $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        $book = Book::where('id',$request->id)->delete();
+        Teacher::where('id',$request->id)->delete();
 
         return response()->json(['success' => true]);
     }
